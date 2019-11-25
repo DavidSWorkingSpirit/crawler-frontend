@@ -36,17 +36,13 @@ export class HomeComponent implements OnInit {
       this.zoekopdrachtService.crawlWebsite(this.zoekopdracht).subscribe(response => {
         this.status[1] = false;
         this.status[2] = true;
-      })
-      // (error) => {
-      //   this.zoekform.reset();
-      //   this.status[1] = false;
-      //   this.status[0] = true;
-      // });
+      },
+      (error) => {
+        this.zoekform.reset();
+        this.status[1] = false;
+        this.status[0] = true;
+      });
     }
-  }
-
-  nieuweZoekopdracht(): void {
-    
   }
 
   zieResultaten(): void {
