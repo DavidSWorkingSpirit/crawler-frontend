@@ -1,0 +1,34 @@
+<div class="bg bg-color">
+    <div class="logo">
+        <mat-icon>language</mat-icon>
+        <h1>Webcrawler</h1>
+    </div>
+
+    <div class="body">
+        <div class="zoeken">
+            <ng-container *ngIf="status[0]">
+                <h4>Geef een website en zoekterm op</h4>
+                <form [formGroup]="zoekform">
+                    <input placeholder="Website" formControlName="website" name="website" type="text" required>
+                    <input placeholder="Zoekterm" formControlName="zoekterm" name="zoekterm" type="text" required>
+
+                    <div>
+                        <button mat-button (click)="zoeken();">Zoeken</button>
+                    </div>
+                </form>
+            </ng-container>
+
+            <ng-container *ngIf="status[1]">
+                <h4>Bezig met zoeken...</h4>
+                <p>Het zoekproces kan enkele minuten duren.</p>
+                <mat-spinner class="mat-spinner"></mat-spinner>
+            </ng-container>
+
+            <ng-container *ngIf="status[2]">
+                <h4>Resultaten beschikbaar</h4>
+                <p>De zoekopdracht is uitgevoerd en de resultaten zijn opgehaald en verwerkt.</p>
+                <button mat-button (click)="zieResultaten();">Resultaten</button>
+            </ng-container>
+        </div>
+    </div>
+</div>
