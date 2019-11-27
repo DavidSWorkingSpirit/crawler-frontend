@@ -7,13 +7,22 @@ import { AccountmanagerAutorisatieGuard } from './guards/accountmanagerautorisat
 import { AdminComponent } from './admin/admin.component';
 import { AccountManagerComponent } from './account-manager/account-manager.component';
 import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
+import { WebsitesComponent } from './admin/websites/websites.component';
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
   { path: '' , component: AdminComponent, canActivate: [AdminAutorisatieGuard],
-      children: [
-        { path: 'vacaturezoeken', component: ZoekschermComponent, canActivate: [AdminAutorisatieGuard] },
-     ]},
+    children: [
+      { path: 'admin', component: AdminHomeComponent, canActivate: [AdminAutorisatieGuard],
+        children: [
+          { path: 'gebruikers', component: GebruikersComponent },
+          { path: 'websites', component: WebsitesComponent }
+        ]
+      },
+    ]
+  },
   { path: '', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
       children: [
         { path: 'accountmanager', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard] },

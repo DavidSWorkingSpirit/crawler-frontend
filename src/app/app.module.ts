@@ -17,6 +17,12 @@ import { AccountManagerComponent } from './account-manager/account-manager.compo
 import { AdminComponent } from './admin/admin.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
+import { MatSnackBarModule, MatTableModule } from '@angular/material';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
+import { WebsitesComponent } from './admin/websites/websites.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -41,6 +47,9 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     AdminComponent,
     NavBarComponent,
     AccountHomeComponent,
+    AdminHomeComponent,
+    GebruikersComponent,
+    WebsitesComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +72,10 @@ export function jwtOptionsFactory(tokenService: TokenService) {
         deps: [TokenService]
       }
     }),
+    MatSnackBarModule,
+    MatTabsModule,
+    MatTableModule,
+    FlexLayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },

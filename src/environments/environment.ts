@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
-  amClientId: 'am-app',
-  amClientSecret: 'lancenNicaLCONiT'
+  amaClientId: 'am-app',
+  amaClientSecret: 'lancenNicaLCONiT'
 };
 
 /*

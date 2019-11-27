@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
-  wsaClientId: 'am-app',
-  wsaClientSecret: 'lancenNicaLCONiT'
+  amaClientId: 'am-app',
+  amaClientSecret: 'lancenNicaLCONiT'
 };
