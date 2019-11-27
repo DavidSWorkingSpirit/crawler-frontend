@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ZoekopdrachtService } from '../services/zoekopdracht.service';
 import { Zoekopdracht } from '../model/zoekopdracht';
+import { Website } from '../model/website';
+import { WebsiteService } from '../services/website.service';
 
 @Component({
   selector: 'app-zoekscherm',
@@ -12,8 +14,10 @@ export class ZoekschermComponent implements OnInit {
   zoekform: FormGroup;
   status: boolean[] = [true, false, false];
   zoekopdracht: Zoekopdracht = new Zoekopdracht;
+  websites: Website[];
 
-  constructor(private fb: FormBuilder, private zoekopdrachtService: ZoekopdrachtService) {
+
+  constructor(private fb: FormBuilder, private zoekopdrachtService: ZoekopdrachtService, private websiteService:WebsiteService) {
     this.zoekform = fb.group({
       website:  ['', Validators.required],
       zoekterm: ['', Validators.required]
@@ -21,6 +25,7 @@ export class ZoekschermComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.websitesOphalen();
   }
 
   zoeken(): void {
@@ -47,6 +52,12 @@ export class ZoekschermComponent implements OnInit {
 
   zieResultaten(): void {
     alert("Werkt niet ;)");
+  }
+
+  websitesOphalen(){
+    this.websiteService.geefAlleWebsites().subscribe(websiteLijst => {
+      this.websites = websiteLijst;
+    });
   }
 }
 
