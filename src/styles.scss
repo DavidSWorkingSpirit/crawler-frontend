@@ -12,7 +12,7 @@ body {
 }
 
 .space {
-    margin-top: 100px;
+    margin-top: 30px;
     margin-left: 50px;
     margin-right: 50px;
 }
@@ -52,3 +52,9 @@ body {
     background: rgb(70, 1, 110);
     height: 2px;
 } 
+
+.mat-tab-label-active {
+    background-color: rgb(126, 2, 197);
+    
+    color: #FFFFFF;
+}

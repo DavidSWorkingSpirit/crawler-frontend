@@ -45,7 +45,15 @@ export class WebsitesComponent implements OnInit {
   }
 
   websiteWijzigen(website: Website): void {
-    alert("LOL");
+    this.websiteService.wijzigWebsite(website.id, website).subscribe(response => {
+      this.openSnackbar("De website is gewijzigd.", "Sluit", "correctmelding");
+      this.website = new Website();
+      this.wijzigen = false;
+      this.haalWebsitesOp();
+    },
+    (error) => {
+      this.openSnackbar("Er ging iets fout bij het wijzigen van de website.", "Sluit", "foutmelding");
+    });
   }
 
   annuleerWijziging(): void {

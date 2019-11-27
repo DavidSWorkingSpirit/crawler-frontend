@@ -23,4 +23,8 @@ export class WebsiteService {
   geefWebsiteOpId(id: number): Observable<Website> {
     return this.http.get<Website>(`${this.api}/` + id);
   }
+
+  wijzigWebsite(id: number, website: Website): Observable<any> {
+    return this.http.put<Website>(`${this.api}/` + id, website);
+  }
 }
