@@ -21,7 +21,7 @@ export class AuthenticatieService {
   constructor(private http: HttpClient, private tokenService: TokenService, private jwtHelperService: JwtHelperService) {
 
     this.apiUrl = environment.apiUrl;
-    this.amClientAuthorization = ''.concat(environment.amClientId, ':', environment.amClientSecret);
+    this.amClientAuthorization = ''.concat(environment.amaClientId, ':', environment.amaClientSecret);
   }
 
   public login(gebruikersnaam: string, wachtwoord: string): Observable<JwtResponse> {
@@ -71,7 +71,7 @@ export class AuthenticatieService {
 
     switch (rol) {
       case 'ADMIN': {
-        return '/vacaturezoeken';
+        return '/admin';
       }
       case 'ACCOUNTMANAGER': {
         return '/vacaturezoeken';

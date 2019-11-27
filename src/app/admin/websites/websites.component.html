@@ -1,0 +1,52 @@
+<p>websites works!</p>
+<div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="20px" fxLayoutGap.xs="5px">
+    <div class="item item-1" fxFlex="60%">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="naam">
+                <th mat-header-cell *matHeaderCellDef> Websitenaam </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.naam}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="url">
+                <th mat-header-cell *matHeaderCellDef> Url </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.url}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="filter">
+                <th mat-header-cell *matHeaderCellDef> Filter </th>
+                <td mat-cell *matCellDef="let element">
+                    {{element.filter}}
+                </td>
+            </ng-container>
+
+            <tr class="fm-color" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row title="Website-overzicht" *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <div class="item item-2" fxFlex="40%">
+        <div>
+            <label>Websitenaam:</label>
+            <input [(ngModel)]="website.naam">
+        </div>
+
+        <div>
+            <label>Url:</label>
+            <input [(ngModel)]="website.url">
+        </div>
+
+        <div>
+            <label>Filter:</label>
+            <input [(ngModel)]="website.filter">
+        </div>
+
+        <div>
+            <button mat-button (click)="websiteOpslaan(website);">Opslaan</button>
+        </div>
+    </div>
+</div>
