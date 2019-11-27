@@ -6,7 +6,7 @@
             <ng-container *ngIf="status[0]">
                 <h4>Geef een website en zoekterm op</h4>
                 <form [formGroup]="zoekform">
-                        <select formControlName="website"name="website" class="form-control" id="websiteKueze"
+                        <select formControlName="website"name="website" class="form-control" id="websiteKeuze"
                         >
                         <option id="website" *ngFor="let Website of websites"
                             [ngValue]="Website.url">
