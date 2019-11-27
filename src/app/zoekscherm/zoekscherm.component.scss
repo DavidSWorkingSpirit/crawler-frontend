@@ -24,7 +24,7 @@ body {
         margin-block-end: 20px; 
     }
 
-    input {
+    input, select {
         width: 95%;
         color: rgb(126, 2, 197);
         padding: 10px;
@@ -38,7 +38,7 @@ body {
         color: rgba(126, 2, 197, $alpha: 0.7);
     }
 
-    input:focus {
+    input:focus, select:focus {
         outline: none;
     }
 

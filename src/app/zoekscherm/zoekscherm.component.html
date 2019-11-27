@@ -6,11 +6,18 @@
             <ng-container *ngIf="status[0]">
                 <h4>Geef een website en zoekterm op</h4>
                 <form [formGroup]="zoekform">
-                    <input placeholder="Website" formControlName="website" name="website" type="text" required>
+                        <select formControlName="website"name="website" class="form-control" id="websiteKeuze"
+                        >
+                        <option id="website" *ngFor="let Website of websites"
+                            [ngValue]="Website.url">
+                            {{Website.naam}} 
+                        </option>
+                        </select>
+                    <!-- <input placeholder="Website" formControlName="website" name="website" type="text" required> -->
                     <input placeholder="Zoekterm" formControlName="zoekterm" name="zoekterm" type="text" required>
 
                     <div>
-                        <button mat-button (click)="zoeken();">Zoeken</button>
+                        <button mat-button (click)="zoeken();" type='button'>Zoeken</button>
                     </div>
                 </form>
             </ng-container>
@@ -30,3 +37,10 @@
     </div>
     </div>
 </div>
+<!-- <select formControlName="website"name="website" class="form-control" id="websiteKueze"
+[(ngModel)]="website.url">
+<option id="website" *ngFor="let Website of websites"
+    [ngValue]="website.url">
+    {{Website.naam}} 
+</option>
+</select> -->
