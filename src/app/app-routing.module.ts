@@ -10,6 +10,7 @@ import { AccountHomeComponent } from './account-manager/account-home/account-hom
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
+import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
@@ -25,7 +26,11 @@ const routes: Routes = [
   },
   { path: '', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
       children: [
-        { path: 'accountmanager', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard] },
+        { path: 'accountmanager', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
+            children: [
+              { path: 'vacatures', component: ZoekschermComponent},
+              { path: 'nieuw', component: NieuweVacatureComponent}
+            ] },
 
     ]},
   

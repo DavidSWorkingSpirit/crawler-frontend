@@ -23,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -49,7 +50,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     AccountHomeComponent,
     AdminHomeComponent,
     GebruikersComponent,
-    WebsitesComponent
+    WebsitesComponent,
+    NieuweVacatureComponent
   ],
   imports: [
     BrowserModule,
