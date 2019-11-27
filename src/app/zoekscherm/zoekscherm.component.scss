@@ -4,33 +4,6 @@ body {
     width: 100%;
 }
 
-.bg {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-}
-
-.logo {
-    margin-top: 50px;
-    margin-bottom: 75px;
-    color: #FFFFFF;
-    text-align: center;
-    
-    mat-icon {
-        font-size: 75px;
-        padding-right: 45px;
-        vertical-align: middle;
-    }
-
-    h1 {
-        text-transform: uppercase;
-        vertical-align: middle;
-        margin-block-start: 50px;
-    }
-}
-
 .body {
     display: flex;
     justify-content: center; /* For horizontal alignment */
@@ -38,12 +11,13 @@ body {
 }
 
 .zoeken {
-    color: #FFFFFF;
-    border: 1.5px solid #FFFFFF;
+    border: 1.5px solid rgb(126, 2, 197);
     border-radius: 10px;
     width: 500px;
     height: 195px;
     padding: 20px;
+    margin-left: 60%;
+    margin-top: 10%;
 
     h4 {
         margin-block-start: 0;
