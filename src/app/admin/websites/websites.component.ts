@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WebsiteService } from 'src/app/services/website.service';
-import { MatTableDataSource, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { Website } from 'src/app/model/website';
+import { WebsiteDeleteDialogComponent } from 'src/app/dialog/website-delete-dialog/website-delete-dialog.component';
 
 @Component({
   selector: 'app-websites',
@@ -10,11 +11,11 @@ import { Website } from 'src/app/model/website';
 })
 export class WebsitesComponent implements OnInit {
   website: Website = new Website();
-  displayedColumns: string[] = ['naam', 'url', 'filter', 'bewerk'];
+  displayedColumns: string[] = ['naam', 'url', 'filter', 'bewerk', 'verwijder'];
   dataSource = new MatTableDataSource();
   wijzigen: boolean = false;
 
-  constructor(private websiteService: WebsiteService, private snackbar: MatSnackBar) { }
+  constructor(private websiteService: WebsiteService, private snackbar: MatSnackBar, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.haalWebsitesOp();
@@ -59,6 +60,22 @@ export class WebsitesComponent implements OnInit {
   annuleerWijziging(): void {
     this.website = new Website();
     this.wijzigen = false;
+  }
+
+  openDialog(website: Website): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = website;
+
+    const dialogRef = this.dialog.open(WebsiteDeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(teVerwijderenWebsite => {
+      this.websiteService.verwijderWebsite(teVerwijderenWebsite.id).subscribe(response => {
+        this.openSnackbar("De website is verwijderd.", "Sluit", "correctmelding");
+        this.haalWebsitesOp();
+      },
+      (error) => {
+        this.openSnackbar("Het verwijderen van de website is mislukt.", "Sluit", "foutmelding");
+      });
+    });
   }
 
   openSnackbar(melding: string, actie: string, cssOpmaak: string) {
