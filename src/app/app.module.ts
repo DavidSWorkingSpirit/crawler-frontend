@@ -15,12 +15,15 @@ import { environment } from 'src/environments/environment';
 import { AutorisatieInterceptor } from './Interceptor/AuthorisatieInterceptor';
 import { AccountManagerComponent } from './account-manager/account-manager.component';
 import { AdminComponent } from './admin/admin.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
 import { MatSnackBarModule, MatTableModule } from '@angular/material';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -43,9 +46,12 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     ZoekschermComponent,
     AccountManagerComponent,
     AdminComponent,
+    NavBarComponent,
+    AccountHomeComponent,
     AdminHomeComponent,
     GebruikersComponent,
-    WebsitesComponent
+    WebsitesComponent,
+    NieuweVacatureComponent
   ],
   imports: [
     BrowserModule,

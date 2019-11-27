@@ -6,9 +6,11 @@ import { AdminAutorisatieGuard } from './guards/adminautorisatie.guard';
 import { AccountmanagerAutorisatieGuard } from './guards/accountmanagerautorisatie.guard';
 import { AdminComponent } from './admin/admin.component';
 import { AccountManagerComponent } from './account-manager/account-manager.component';
+import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
+import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
@@ -23,10 +25,14 @@ const routes: Routes = [
     ]
   },
   { path: '', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
-    children: [
-      { path: 'vacaturezoeken', component: ZoekschermComponent, canActivate: [AccountmanagerAutorisatieGuard] },
-    ]
-  },
+      children: [
+        { path: 'accountmanager', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
+            children: [
+              { path: 'vacatures', component: ZoekschermComponent},
+              { path: 'nieuw', component: NieuweVacatureComponent}
+            ] },
+
+    ]},
   
   { path: '', redirectTo: '/inloggen', pathMatch: 'full' }
 ];
