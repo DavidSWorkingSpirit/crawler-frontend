@@ -1,3 +1,57 @@
+h3 {
+    color: rgb(126, 2, 197);
+}
+
 table {
     width: 100%;
+    box-shadow: none;
+}
+
+.tableheader {
+    background-color: rgb(126, 2, 197);
+}
+
+th.mat-header-cell {
+    color: #FFFFFF;
+}
+
+.websitemenu {
+    width: 100%;
+    margin-left: 30px;
+}
+
+.inputdiv {
+    width: 100%;
+}
+
+input {
+    width: 97%;
+    border: 2px solid rgb(126, 2, 197);
+    color: rgb(126, 2, 197);
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+input::placeholder {
+    color: rgba(126, 2, 197, $alpha: 0.7);
+}
+
+input:focus {
+    outline: none;
+}
+
+.websitemenu {
+
+    button {
+        margin-top: 10px;
+        background-color: rgb(126, 2, 197);
+        color: #FFFFFF;
+        min-width: 150px;
+    }
+
+    #annuleer {
+        margin-left: 10px;
+    }
 }

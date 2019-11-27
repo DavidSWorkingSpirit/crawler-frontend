@@ -19,4 +19,8 @@ export class WebsiteService {
   geefAlleWebsites(): Observable<Website[]> {
     return this.http.get<Website[]>(`${this.api}/`);
   }
+
+  geefWebsiteOpId(id: number): Observable<Website> {
+    return this.http.get<Website>(`${this.api}/` + id);
+  }
 }

@@ -10,8 +10,9 @@ import { Website } from 'src/app/model/website';
 })
 export class WebsitesComponent implements OnInit {
   website: Website = new Website();
-  displayedColumns: string[] = ['naam', 'url', 'filter'];
+  displayedColumns: string[] = ['naam', 'url', 'filter', 'bewerk'];
   dataSource = new MatTableDataSource();
+  wijzigen: boolean = false;
 
   constructor(private websiteService: WebsiteService, private snackbar: MatSnackBar) { }
 
@@ -34,6 +35,22 @@ export class WebsitesComponent implements OnInit {
     (error) => {
       this.openSnackbar("Er ging iets fout bij het opslaan van de website.", "Sluit", "foutmelding");
     });
+  }
+
+  laadWijzigmenu(id: number): void {
+    this.websiteService.geefWebsiteOpId(id).subscribe(website => {
+      this.website = website;
+      this.wijzigen = true;
+    });
+  }
+
+  websiteWijzigen(website: Website): void {
+    alert("LOL");
+  }
+
+  annuleerWijziging(): void {
+    this.website = new Website();
+    this.wijzigen = false;
   }
 
   openSnackbar(melding: string, actie: string, cssOpmaak: string) {

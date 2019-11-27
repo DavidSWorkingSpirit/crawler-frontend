@@ -20,6 +20,11 @@ body {
     background-image: linear-gradient(135deg, rgb(81, 61, 255), rgb(169, 33, 248), rgb(126, 2, 197));
 }
 
+.button-color {
+    background-color: rgb(126, 2, 197);
+    color: #FFFFFF;
+}
+
 .mat-spinner circle {
     stroke: #FFFFFF !important;
 }
@@ -41,3 +46,8 @@ body {
 .mat-snack-bar-container.foutmelding button {
     color: #FFFFFF;
 }
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: rgb(70, 1, 110);
+    height: 2px;
+} 
