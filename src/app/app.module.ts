@@ -24,6 +24,8 @@ import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
+import { MatDialogModule } from '@angular/material';
+import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/website-delete-dialog.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -51,7 +53,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     AdminHomeComponent,
     GebruikersComponent,
     WebsitesComponent,
-    NieuweVacatureComponent
+    NieuweVacatureComponent,
+    WebsiteDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,11 +81,13 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatTabsModule,
     MatTableModule,
     FlexLayoutModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [WebsiteDeleteDialogComponent]
 })
 export class AppModule { }

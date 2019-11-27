@@ -11,8 +11,18 @@ table {
     background-color: rgb(126, 2, 197);
 }
 
+mat-cell, .mat-cell {
+    padding: 12px 16px 12px 0;
+}
+
 th.mat-header-cell {
     color: #FFFFFF;
+}
+
+.align-center {
+    text-align: center;
+    align-content: center;
+    vertical-align: middle;
 }
 
 .websitemenu {
