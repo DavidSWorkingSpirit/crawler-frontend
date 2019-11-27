@@ -58,3 +58,15 @@ body {
     
     color: #FFFFFF;
 }
+
+.mat-form-field-type-mat-select .mat-form-field-label, .mat-select-value {
+    color: rgb(126, 2, 197);
+}
+
+.mat-option.ng-star-inserted.mat-selected.mat-active {
+    color: rgb(126, 2, 197) !important;
+}
+
+.mat-form-field-ripple {
+    background-color: rgb(126, 2, 197) !important;
+}
