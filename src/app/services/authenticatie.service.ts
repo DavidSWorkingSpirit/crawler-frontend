@@ -74,7 +74,7 @@ export class AuthenticatieService {
         return '/vacaturezoeken';
       }
       case 'ACCOUNTMANAGER': {
-        return '/vacaturezoeken';
+        return '/accountmanager';
       }
     }
   }

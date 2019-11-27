@@ -15,6 +15,8 @@ import { environment } from 'src/environments/environment';
 import { AutorisatieInterceptor } from './Interceptor/AuthorisatieInterceptor';
 import { AccountManagerComponent } from './account-manager/account-manager.component';
 import { AdminComponent } from './admin/admin.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -36,7 +38,9 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     InlogComponent,
     ZoekschermComponent,
     AccountManagerComponent,
-    AdminComponent
+    AdminComponent,
+    NavBarComponent,
+    AccountHomeComponent,
   ],
   imports: [
     BrowserModule,
