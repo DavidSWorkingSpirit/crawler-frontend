@@ -1,6 +1,6 @@
 import { Zoekopdracht } from './zoekopdracht';
 
-export class Resultaat {
+export class Vacature {
     id: number;
     titel: string;
     tekst: string;
