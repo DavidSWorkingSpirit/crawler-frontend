@@ -11,6 +11,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
+import { ZoektermComponent } from './admin/zoekterm/zoekterm.component';
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
@@ -19,7 +20,8 @@ const routes: Routes = [
       { path: 'admin', component: AdminHomeComponent, canActivate: [AdminAutorisatieGuard],
         children: [
           { path: 'gebruikers', component: GebruikersComponent },
-          { path: 'websites', component: WebsitesComponent }
+          { path: 'websites', component: WebsitesComponent },
+          { path: 'zoekterm', component: ZoektermComponent }
         ]
       },
     ]

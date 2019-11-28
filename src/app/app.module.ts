@@ -27,6 +27,7 @@ import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuw
 import { MatDialogModule } from '@angular/material';
 import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/website-delete-dialog.component';
 import { GebruikerDeleteDialogComponent } from './dialog/gebruiker-delete-dialog/gebruiker-delete-dialog.component';
+import { ZoektermComponent } from './admin/zoekterm/zoekterm.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -57,6 +58,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     NieuweVacatureComponent,
     WebsiteDeleteDialogComponent,
     GebruikerDeleteDialogComponent,
+    ZoektermComponent,
   ],
   imports: [
     BrowserModule,
