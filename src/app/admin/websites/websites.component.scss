@@ -2,21 +2,14 @@ h3 {
     color: rgb(126, 2, 197);
 }
 
-table {
-    width: 100%;
+.websitetabel {
+    height: 500px;
+    overflow: auto;
     box-shadow: none;
-}
-
-.tableheader {
-    background-color: rgb(126, 2, 197);
 }
 
 mat-cell, .mat-cell {
     padding: 12px 16px 12px 0;
-}
-
-th.mat-header-cell {
-    color: #FFFFFF;
 }
 
 .align-center {
@@ -28,6 +21,17 @@ th.mat-header-cell {
 .websitemenu {
     width: 100%;
     margin-left: 30px;
+
+    button {
+        margin-top: 10px;
+        background-color: rgb(126, 2, 197);
+        color: #FFFFFF;
+        min-width: 150px;
+    }
+
+    #annuleer {
+        margin-left: 10px;
+    }
 }
 
 .inputdiv {
@@ -36,7 +40,7 @@ th.mat-header-cell {
 
 input {
     width: 97%;
-    border: 2px solid rgb(126, 2, 197);
+    border: 1px solid rgb(126, 2, 197);
     color: rgb(126, 2, 197);
     padding: 10px;
     font-size: 20px;
@@ -50,18 +54,4 @@ input::placeholder {
 
 input:focus {
     outline: none;
-}
-
-.websitemenu {
-
-    button {
-        margin-top: 10px;
-        background-color: rgb(126, 2, 197);
-        color: #FFFFFF;
-        min-width: 150px;
-    }
-
-    #annuleer {
-        margin-left: 10px;
-    }
 }

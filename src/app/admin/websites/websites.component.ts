@@ -34,7 +34,7 @@ export class WebsitesComponent implements OnInit {
       this.haalWebsitesOp();
     },
     (error) => {
-      this.openSnackbar("Er ging iets fout bij het opslaan van de website.", "Sluit", "foutmelding");
+      this.openSnackbar("Er is een fout opgetreden bij het opslaan van de website.", "Sluit", "foutmelding");
     });
   }
 
@@ -53,7 +53,7 @@ export class WebsitesComponent implements OnInit {
       this.haalWebsitesOp();
     },
     (error) => {
-      this.openSnackbar("Er ging iets fout bij het wijzigen van de website.", "Sluit", "foutmelding");
+      this.openSnackbar("Er is een fout opgetreden bij het wijzigen van de website.", "Sluit", "foutmelding");
     });
   }
 
