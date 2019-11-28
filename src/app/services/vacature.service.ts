@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { Vacature } from '../model/vacature';
+import { VacatureDTO} from '../model/vacature-dto';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class VacatureService {
 
   constructor(private http:HttpClient) { }
 
-  geefAlleVacatures() : Observable<Vacature[]>{
-    return this.http.get<Vacature[]>(`${this.api}/`);
+  geefAlleVacatures() : Observable<VacatureDTO[]>{
+    return this.http.get<VacatureDTO[]>(`${this.api}/`);
   }
 }
