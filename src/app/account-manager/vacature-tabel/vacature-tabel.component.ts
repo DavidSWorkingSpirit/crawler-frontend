@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatPaginatorModule } from '@angular/material';
 import { VacatureService } from 'src/app/services/vacature.service';
-import { Vacature } from 'src/app/model/vacature';
+import { VacatureDTO } from 'src/app/model/vacature-dto';
 
 @Component({
   selector: 'app-vacature-tabel',
@@ -9,8 +9,8 @@ import { Vacature } from 'src/app/model/vacature';
   styleUrls: ['./vacature-tabel.component.scss']
 })
 export class VacatureTabelComponent implements OnInit {
-  vacatureLijst : Vacature[] = new Array;
-  vacature : Vacature = new Vacature;
+  vacatureLijst : VacatureDTO[] = new Array;
+  vacature : VacatureDTO = new VacatureDTO;
   columnsToDisplay = ['titel', 'tekst'];
 
   constructor(private vacatureService : VacatureService) { }
