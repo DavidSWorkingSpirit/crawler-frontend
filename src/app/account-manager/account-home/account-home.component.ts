@@ -19,8 +19,13 @@ export class AccountHomeComponent implements OnInit {
       },
       {
         label: "Bekijk vacatures",
-        link: "./vacatures",
+        link: "./vacaturelijst",
         index: 1
+      },
+      {
+        label: "Zoekopdracht",
+        link: "./zoeken",
+        index: 2
       }
     ];
   }

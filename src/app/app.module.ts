@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
@@ -24,6 +24,7 @@ import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
+import { VacatureTabelComponent } from './account-manager/vacature-tabel/vacature-tabel.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -51,7 +52,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     AdminHomeComponent,
     GebruikersComponent,
     WebsitesComponent,
-    NieuweVacatureComponent
+    NieuweVacatureComponent,
+    VacatureTabelComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatTabsModule,
     MatTableModule,
     FlexLayoutModule,
+    MatPaginatorModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },
