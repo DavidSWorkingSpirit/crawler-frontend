@@ -27,4 +27,8 @@ export class WebsiteService {
   wijzigWebsite(id: number, website: Website): Observable<any> {
     return this.http.put<Website>(`${this.api}/` + id, website);
   }
+
+  verwijderWebsite(id: number): Observable<any> {
+    return this.http.delete(`${this.api}/` + id);
+  }
 }

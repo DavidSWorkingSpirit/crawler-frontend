@@ -22,10 +22,10 @@ export class ZoekschermComponent implements OnInit {
       website:  ['', Validators.required],
       zoekterm: ['', Validators.required]
     });
-    this.websitesOphalen();
   }
 
   ngOnInit() {
+    this.websitesOphalen();
   }
 
   zoeken(): void {

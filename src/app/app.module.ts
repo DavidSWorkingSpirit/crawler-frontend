@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule } from '@angular/material';
+import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
@@ -25,6 +25,8 @@ import { WebsitesComponent } from './admin/websites/websites.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 import { VacatureTabelComponent } from './account-manager/vacature-tabel/vacature-tabel.component';
+import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/website-delete-dialog.component';
+
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -53,7 +55,8 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     GebruikersComponent,
     WebsitesComponent,
     NieuweVacatureComponent,
-    VacatureTabelComponent
+    VacatureTabelComponent,
+    WebsiteDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,11 +84,13 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatTableModule,
     FlexLayoutModule,
     MatPaginatorModule,
+    MatDialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [WebsiteDeleteDialogComponent]
 })
 export class AppModule { }
