@@ -16,9 +16,11 @@ import { VacatureTabelComponent } from './account-manager/vacature-tabel/vacatur
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
-  { path: '' , component: AdminComponent, canActivate: [AdminAutorisatieGuard],
+  {
+    path: 'admin', component: AdminComponent, canActivate: [AdminAutorisatieGuard],
     children: [
-      { path: 'admin', component: AdminHomeComponent, canActivate: [AdminAutorisatieGuard],
+      {
+        path: '', component: AdminHomeComponent, canActivate: [AdminAutorisatieGuard],
         children: [
           { path: 'gebruikers', component: GebruikersComponent },
           { path: 'websites', component: WebsitesComponent },
@@ -27,17 +29,20 @@ const routes: Routes = [
       },
     ]
   },
-  { path: '', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
-      children: [
-        { path: 'accountmanager', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
-            children: [
-              { path: 'zoeken', component: ZoekschermComponent},
-              { path: 'nieuw', component: NieuweVacatureComponent},
-              { path: 'vacaturelijst', component : VacatureTabelComponent}
-            ] },
+  {
+    path: 'accountmanager', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
+    children: [
+      {
+        path: '', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
+        children: [
+          { path: 'zoeken', component: ZoekschermComponent },
+          { path: 'nieuw', component: NieuweVacatureComponent },
+          { path: 'vacaturelijst', component: VacatureTabelComponent }
+        ]
+      },
+    ]
+  },
 
-    ]},
-  
   { path: '', redirectTo: '/inloggen', pathMatch: 'full' }
 ];
 

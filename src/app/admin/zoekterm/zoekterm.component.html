@@ -3,10 +3,10 @@
         <h3>Gebruikers</h3>
 
         <div class="zoektermtabel mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource">
+            <table mat-table [dataSource]="zoektermTabel">
 
                 <ng-container matColumnDef="naam">
-                    <th mat-header-cell *matHeaderCellDef> Websitenaam </th>
+                    <th mat-header-cell *matHeaderCellDef> Zoekterm </th>
                     <td mat-cell *matCellDef="let element">
                         {{element.naam}}
                     </td>
@@ -43,19 +43,11 @@
             <h3>Nieuwe zoekterm toevoegen</h3>
 
             <div class="inputdiv">
-                <input id="websitenaam" placeholder="Websitenaam" [(ngModel)]="website.naam">
-            </div>
-
-            <div class="inputdiv">
-                <input id="url" placeholder="Url" [(ngModel)]="website.url">
-            </div>
-
-            <div class="inputdiv">
-                <input id="filter" placeholder="Filter" [(ngModel)]="website.filter">
+                <input id="zoektermnaam" placeholder="Zoekterm" [(ngModel)]="zoekterm.naam">
             </div>
 
             <div>
-                <button mat-button id="opslaan" (click)="websiteOpslaan(website);">Opslaan</button>
+                <button mat-button id="opslaan" (click)="zoektermOpslaan(zoekterm);">Opslaan</button>
             </div>
         </ng-container>
 
@@ -63,19 +55,11 @@
             <h3>Zoekterm wijzigen</h3>
 
             <div class="inputdiv">
-                <input id="wijzigwebsitenaam" placeholder="Websitenaam" [(ngModel)]="website.naam">
-            </div>
-
-            <div class="inputdiv">
-                <input id="wijzigurl" placeholder="Url" [(ngModel)]="website.url">
-            </div>
-
-            <div class="inputdiv">
-                <input id="wijzigfilter" placeholder="Filter" [(ngModel)]="website.filter">
+                <input id="wijzigzoektermnaam" placeholder="Zoekterm" [(ngModel)]="zoekterm.naam">
             </div>
 
             <div class="buttons">
-                <button mat-button id="wijzig" (click)="websiteWijzigen(website);">Wijzigen</button>
+                <button mat-button id="wijzig" (click)="zoektermWijzigen(zoekterm);">Wijzigen</button>
                 <button mat-button id="annuleer" (click)="annuleerWijziging();">Annuleren</button>
             </div>
         </ng-container>
