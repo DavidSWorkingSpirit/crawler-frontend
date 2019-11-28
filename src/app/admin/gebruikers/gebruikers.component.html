@@ -105,8 +105,18 @@
             <h3>Gebruiker wijzigen</h3>
 
             <div class="inputdiv">
-                <input id="wijzigvoornaam" placeholder="Voornaam" [(ngModel)]="gebruiker.voornaam" required>
-                <input id="wijzigtussenvoegsel" placeholder="Tussenvoegsel" [(ngModel)]="gebruiker.tussenvoegsel">
+                <div class="container" fxLayout fxLayout.xs="column" fxLayoutAlign="left" fxLayoutGap="20px"
+                    fxLayoutGap.xs="5px">
+                    <!-- Invoer voornaam -->
+                    <div class="item item-1" fxFlex="60%">
+                        <input id="wijzigvoornaam" placeholder="Voornaam" [(ngModel)]="gebruiker.voornaam" required>
+                    </div>
+                    <!-- Invoer tussenvoegsel -->
+                    <div class="item item-2" fxFlex="34.5%">
+                        <input id="wijzigtussenvoegsel" placeholder="Tussenvoegsel"
+                            [(ngModel)]="gebruiker.tussenvoegsel">
+                    </div>
+                </div>
             </div>
 
             <div class="inputdiv">

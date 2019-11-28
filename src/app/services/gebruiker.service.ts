@@ -19,4 +19,16 @@ export class GebruikerService {
   gebruikerOpslaan(gebruiker: Gebruiker): Observable<any> {
     return this.http.post<Gebruiker>(`${this.api}/`, gebruiker);
   }
+
+  geefGebruikerOpId(id: number): Observable<Gebruiker> {
+    return this.http.get<Gebruiker>(`${this.api}/` + id);
+  }
+
+  wijzigGebruiker(id: number, gebruiker: Gebruiker): Observable<any> {
+    return this.http.put<Gebruiker>(`${this.api}/` + id, gebruiker);
+  }
+
+  verwijderGebruiker(id: number): Observable<any> {
+    return this.http.delete(`${this.api}/` + id);
+  }
 }

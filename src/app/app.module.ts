@@ -26,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 import { MatDialogModule } from '@angular/material';
 import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/website-delete-dialog.component';
+import { GebruikerDeleteDialogComponent } from './dialog/gebruiker-delete-dialog/gebruiker-delete-dialog.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -55,6 +56,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     WebsitesComponent,
     NieuweVacatureComponent,
     WebsiteDeleteDialogComponent,
+    GebruikerDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +91,6 @@ export function jwtOptionsFactory(tokenService: TokenService) {
 
   ],
   bootstrap: [AppComponent],
-  entryComponents: [WebsiteDeleteDialogComponent]
+  entryComponents: [WebsiteDeleteDialogComponent, GebruikerDeleteDialogComponent]
 })
 export class AppModule { }
