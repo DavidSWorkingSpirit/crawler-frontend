@@ -12,6 +12,7 @@ import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
 import { WebsitesComponent } from './admin/websites/websites.component';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 import { ZoektermComponent } from './admin/zoekterm/zoekterm.component';
+import { VacatureTabelComponent } from './account-manager/vacature-tabel/vacature-tabel.component';
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
@@ -30,8 +31,9 @@ const routes: Routes = [
       children: [
         { path: 'accountmanager', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
             children: [
-              { path: 'vacatures', component: ZoekschermComponent},
-              { path: 'nieuw', component: NieuweVacatureComponent}
+              { path: 'zoeken', component: ZoekschermComponent},
+              { path: 'nieuw', component: NieuweVacatureComponent},
+              { path: 'vacaturelijst', component : VacatureTabelComponent}
             ] },
 
     ]},
