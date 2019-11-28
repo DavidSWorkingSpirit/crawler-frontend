@@ -17,7 +17,7 @@ import { AccountManagerComponent } from './account-manager/account-manager.compo
 import { AdminComponent } from './admin/admin.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
-import { MatSnackBarModule, MatTableModule } from '@angular/material';
+import { MatSnackBarModule, MatTableModule, MatSelectModule } from '@angular/material';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
@@ -26,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 import { MatDialogModule } from '@angular/material';
 import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/website-delete-dialog.component';
+import { GebruikerDeleteDialogComponent } from './dialog/gebruiker-delete-dialog/gebruiker-delete-dialog.component';
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -55,6 +56,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     WebsitesComponent,
     NieuweVacatureComponent,
     WebsiteDeleteDialogComponent,
+    GebruikerDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,12 +84,13 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatTableModule,
     FlexLayoutModule,
     MatDialogModule,
+    MatSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },
 
   ],
   bootstrap: [AppComponent],
-  entryComponents: [WebsiteDeleteDialogComponent]
+  entryComponents: [WebsiteDeleteDialogComponent, GebruikerDeleteDialogComponent]
 })
 export class AppModule { }

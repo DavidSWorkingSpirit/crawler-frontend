@@ -2,52 +2,54 @@
     <div class="item item-1" fxFlex="60%">
         <h3>Websites</h3>
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <div class="websitetabel mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
 
-            <ng-container matColumnDef="naam">
-                <th mat-header-cell *matHeaderCellDef> Websitenaam </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.naam}}
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="naam">
+                    <th mat-header-cell *matHeaderCellDef> Websitenaam </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.naam}}
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="url">
-                <th mat-header-cell *matHeaderCellDef> Url </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.url}}
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="url">
+                    <th mat-header-cell *matHeaderCellDef> Url </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.url}}
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="filter">
-                <th mat-header-cell *matHeaderCellDef> Filter </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.filter}}
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="filter">
+                    <th mat-header-cell *matHeaderCellDef> Filter </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.filter}}
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="bewerk">
-                <th mat-header-cell *matHeaderCellDef> Bewerk </th>
-                <td class="align-center" mat-cell *matCellDef="let element">
-                    <button class="button-color" id="wijzig{{element.id}}" (click)="laadWijzigmenu(element.id);"
-                        title="Website wijzigen" mat-icon-button>
-                        <mat-icon>create</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="bewerk">
+                    <th mat-header-cell *matHeaderCellDef> Bewerk </th>
+                    <td class="align-center" mat-cell *matCellDef="let element">
+                        <button class="button-color" id="wijzig{{element.id}}" (click)="laadWijzigmenu(element.id);"
+                            title="Website wijzigen" mat-icon-button>
+                            <mat-icon>create</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
 
-            <ng-container matColumnDef="verwijder">
-                <th mat-header-cell *matHeaderCellDef> Verwijder </th>
-                <td class="align-center" mat-cell *matCellDef="let element">
-                    <button class="button-color" id="verwijder{{element.id}}" (click)="openDialog(element);"
-                        title="Website verwijderen" mat-icon-button>
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
+                <ng-container matColumnDef="verwijder">
+                    <th mat-header-cell *matHeaderCellDef> Verwijder </th>
+                    <td class="align-center" mat-cell *matCellDef="let element">
+                        <button class="button-color" id="verwijder{{element.id}}" (click)="openDialog(element);"
+                            title="Website verwijderen" mat-icon-button>
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
 
-            <tr class="tableheader" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row title="Website-overzicht" *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
+                <tr class="tableheader" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
     </div>
 
     <div class="item item-2 websitemenu" fxFlex="40%">
@@ -55,15 +57,15 @@
             <h3>Nieuwe website toevoegen</h3>
 
             <div class="inputdiv">
-                <input placeholder="Websitenaam" [(ngModel)]="website.naam">
+                <input id="websitenaam" placeholder="Websitenaam" [(ngModel)]="website.naam">
             </div>
 
             <div class="inputdiv">
-                <input placeholder="Url" [(ngModel)]="website.url">
+                <input id="url" placeholder="Url" [(ngModel)]="website.url">
             </div>
 
             <div class="inputdiv">
-                <input placeholder="Filter" [(ngModel)]="website.filter">
+                <input id="filter" placeholder="Filter" [(ngModel)]="website.filter">
             </div>
 
             <div>
@@ -75,15 +77,15 @@
             <h3>Website wijzigen</h3>
 
             <div class="inputdiv">
-                <input placeholder="Websitenaam" [(ngModel)]="website.naam">
+                <input id="wijzigwebsitenaam" placeholder="Websitenaam" [(ngModel)]="website.naam">
             </div>
 
             <div class="inputdiv">
-                <input placeholder="Url" [(ngModel)]="website.url">
+                <input id="wijzigurl" placeholder="Url" [(ngModel)]="website.url">
             </div>
 
             <div class="inputdiv">
-                <input placeholder="Filter" [(ngModel)]="website.filter">
+                <input id="wijzigfilter" placeholder="Filter" [(ngModel)]="website.filter">
             </div>
 
             <div class="buttons">
