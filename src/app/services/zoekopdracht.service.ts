@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Zoekopdracht } from '../model/zoekopdracht';
+import { Website } from '../model/website';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ export class ZoekopdrachtService {
 
   constructor(private http: HttpClient) { }
 
-  crawlWebsite(zoekopdracht: Zoekopdracht): Observable<any> {
-    console.log(zoekopdracht);
-    return this.http.post<Zoekopdracht>(`${this.api}/`, zoekopdracht);
+  crawlWebsite(website: Website): Observable<any> {
+    return this.http.post<Zoekopdracht>(`${this.api}/`, website);
   }
 }
