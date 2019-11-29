@@ -21,6 +21,11 @@ export class AdminHomeComponent implements OnInit {
         label: "Beheer websites",
         link: "./websites",
         index: 1
+      },
+      {
+        label: "Beheer zoektermen",
+        link: "./zoekterm",
+        index: 2
       }
     ];
   }
