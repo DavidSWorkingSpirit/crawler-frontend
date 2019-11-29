@@ -14,13 +14,12 @@ export class ZoekschermComponent implements OnInit {
   zoekform: FormGroup;
   status: boolean[] = [true, false, false];
   zoekopdracht: Zoekopdracht = new Zoekopdracht;
-  websites: Website[];
-
+  websites: Website[] = new Array;
+  website: Website = new Website();
 
   constructor(private fb: FormBuilder, private zoekopdrachtService: ZoekopdrachtService, private websiteService:WebsiteService) {
     this.zoekform = fb.group({
-      website:  ['', Validators.required],
-      zoekterm: ['', Validators.required]
+      website:  ['', Validators.required]
     });
   }
 
@@ -31,14 +30,13 @@ export class ZoekschermComponent implements OnInit {
   zoeken(): void {
     const val = this.zoekform.value;
 
-    if (val.website && val.zoekterm) {
+    if (val.website) {
       this.status[0] = false;
       this.status[1] = true;
 
-      this.zoekopdracht.website = val.website;
-      this.zoekopdracht.zoekterm = val.zoekterm;
+      this.website = val.website;
 
-      this.zoekopdrachtService.crawlWebsite(this.zoekopdracht).subscribe(response => {
+      this.zoekopdrachtService.crawlWebsite(this.website).subscribe(response => {
         this.status[1] = false;
         this.status[2] = true;
       },
@@ -60,4 +58,3 @@ export class ZoekschermComponent implements OnInit {
     });
   }
 }
-
