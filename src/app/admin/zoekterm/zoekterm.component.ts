@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatSnackBar, MatDialog } from '@angular/material';
+import { MatTableDataSource, MatSnackBar, MatDialog, MatDialogConfig } from '@angular/material';
 import { Zoekterm } from 'src/app/model/zoekterm';
 import { ZoektermService } from 'src/app/services/zoekterm.service';
+import { ZoektermDeleteDialogComponent } from 'src/app/dialog/zoekterm-delete-dialog/zoekterm-delete-dialog.component';
 
 @Component({
   selector: 'app-zoekterm',
@@ -37,7 +38,45 @@ export class ZoektermComponent implements OnInit {
     });
   }
 
+  laadWijzigmenu(id: number): void {
+    this.zoektermService.geefZoektermOpId(id).subscribe(zoekterm => {
+      this.zoekterm = zoekterm;
+      this.wijzigen = true;
+    });
+  }
 
+  zoektermWijzigen(zoekterm: Zoekterm): void {
+    this.zoektermService.wijzigZoekterm(zoekterm.id, zoekterm).subscribe(response => {
+      this.openSnackbar("De zoekterm is gewijzigd.", "Sluit", "correctmelding");
+      this.zoekterm = new Zoekterm();
+      this.wijzigen = false;
+      this.haalZoektermenOp();
+    },
+    (error) => {
+      this.openSnackbar("Er is een fout opgetreden bij het wijzigen van de zoekterm.", "Sluit", "foutmelding");
+    });
+  }
+
+  annuleerWijziging(): void {
+    this.zoekterm = new Zoekterm();
+    this.wijzigen = false;
+  }
+
+  openDialog(zoekterm: Zoekterm): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = zoekterm;
+
+    const dialogRef = this.dialog.open(ZoektermDeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(teVerwijderenZoekterm => {
+      this.zoektermService.verwijderZoekterm(teVerwijderenZoekterm.id).subscribe(response => {
+        this.openSnackbar("De zoekterm is verwijderd.", "Sluit", "correctmelding");
+        this.haalZoektermenOp();
+      },
+      (error) => {
+        this.openSnackbar("Het verwijderen van de zoekterm is mislukt.", "Sluit", "foutmelding");
+      });
+    });
+  }
 
   openSnackbar(melding: string, actie: string, cssOpmaak: string) {
     this.snackbar.open(melding, actie, {

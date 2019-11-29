@@ -28,6 +28,7 @@ import { VacatureTabelComponent } from './account-manager/vacature-tabel/vacatur
 import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/website-delete-dialog.component';
 import { GebruikerDeleteDialogComponent } from './dialog/gebruiker-delete-dialog/gebruiker-delete-dialog.component';
 import { ZoektermComponent } from './admin/zoekterm/zoekterm.component';
+import { ZoektermDeleteDialogComponent } from './dialog/zoekterm-delete-dialog/zoekterm-delete-dialog.component';
 
 
 export function jwtOptionsFactory(tokenService: TokenService) {
@@ -61,6 +62,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     WebsiteDeleteDialogComponent,
     GebruikerDeleteDialogComponent,
     ZoektermComponent,
+    ZoektermDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +98,6 @@ export function jwtOptionsFactory(tokenService: TokenService) {
 
   ],
   bootstrap: [AppComponent],
-  entryComponents: [WebsiteDeleteDialogComponent, GebruikerDeleteDialogComponent]
+  entryComponents: [WebsiteDeleteDialogComponent, GebruikerDeleteDialogComponent, ZoektermDeleteDialogComponent]
 })
 export class AppModule { }
