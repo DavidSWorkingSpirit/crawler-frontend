@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { VacatureDTO} from '../model/vacature-dto';
 import { HttpClient } from '@angular/common/http';
+import { SorteerDTO } from '../model/sorteer-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class VacatureService {
 
   constructor(private http:HttpClient) { }
 
-  geefAlleVacatures() : Observable<VacatureDTO[]>{
-    return this.http.get<VacatureDTO[]>(`${this.api}/`);
+  geefAlleVacatures(sorteerDTO:SorteerDTO) : Observable<any>{
+    return this.http.post<VacatureDTO[]>(`${this.api}/`, sorteerDTO);
   }
 }
