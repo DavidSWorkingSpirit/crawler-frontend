@@ -15,6 +15,6 @@
             <tr class="tableheader" mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
             <tr mat-row *matRowDef="let vacature; columns: columnsToDisplay"></tr>
             </table>
-            <mat-paginator (page)="haalVacaturesOp($event)" class="mat-table" [pageSize]="25"></mat-paginator>
+            <mat-paginator (page)="haalVacaturesOpPagina($event)" class="mat-table" [pageSize]="25" [length]="length"></mat-paginator>
             </div>
     </div>

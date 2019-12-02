@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatPaginatorModule, PageEvent } from '@angular/material';
+import { MatTableDataSource, MatPaginatorModule, PageEvent, MatPaginator } from '@angular/material';
 import { VacatureService } from 'src/app/services/vacature.service';
 import { VacatureDTO } from 'src/app/model/vacature-dto';
 import { SorteerDTO } from 'src/app/model/sorteer-dto';
@@ -15,12 +15,20 @@ export class VacatureTabelComponent implements OnInit {
   columnsToDisplay = ['titel', 'tekst'];
   event : PageEvent;
   sorteerDTO: SorteerDTO = new SorteerDTO;
+  paginator:MatPaginator;
+  length:number;
 
   constructor(private vacatureService : VacatureService) { }
 
   ngOnInit() {
+    this.haalAantalVacaturesOp();
     this.haalEersteVacaturesOp();
     
+  }
+
+  haalAantalVacaturesOp() : void{
+    this.vacatureService.geefAantalVacatures().subscribe(aantal => {this.length = aantal
+    });
   }
 
   haalEersteVacaturesOp(): void{
@@ -44,6 +52,5 @@ export class VacatureTabelComponent implements OnInit {
     this.vacatureService.geefAlleVacatures(sorteerDTO).subscribe(vacatureLijst => {
       this.vacatureLijst = vacatureLijst;
     });
-
   }
 }
