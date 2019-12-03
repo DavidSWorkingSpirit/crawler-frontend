@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> develop
 import { MatTableDataSource, MatPaginatorModule, PageEvent, MatPaginator } from '@angular/material';
 import { VacatureService } from 'src/app/services/vacature.service';
 import { VacatureDTO } from 'src/app/model/vacature-dto';
@@ -19,6 +23,7 @@ export class VacatureTabelComponent implements OnInit, AfterViewInit {
   selectedFilters: string[] = new Array;
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  length:number;
 
   constructor(private vacatureService : VacatureService) { }
 
@@ -32,11 +37,18 @@ export class VacatureTabelComponent implements OnInit, AfterViewInit {
 
   haalEersteVacaturesOp(): void{
     this.sorteerDTO.page = 0;
-    this.sorteerDTO.size = 10000;
+    this.sorteerDTO.size = 25;
     this.sorteerDTO.sort = "vacature";
     this.sorteerDTO.sortDir = "desc";
+    // this.sorteerDTO.zoekopdracht="java";
+    this.haalAantalVacaturesOp(this.sorteerDTO.zoekopdracht);
     this.haalVacaturesOp(this.sorteerDTO);
 
+  }
+
+  haalAantalVacaturesOp(zoekopdracht:String) : void{
+    this.vacatureService.geefAantalVacatures(zoekopdracht).subscribe(aantal => {this.length = aantal
+    });
   }
 
   haalVacaturesOpPagina(event:PageEvent): void {
@@ -51,6 +63,5 @@ export class VacatureTabelComponent implements OnInit, AfterViewInit {
     this.vacatureService.geefAlleVacatures(sorteerDTO).subscribe(vacatureLijst => {
       this.vacatureLijst.data = vacatureLijst;
     });
-
   }
 }
