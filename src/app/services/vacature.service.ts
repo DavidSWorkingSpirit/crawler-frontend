@@ -17,7 +17,7 @@ export class VacatureService {
     return this.http.post<VacatureDTO[]>(`${this.api}/`, sorteerDTO);
   }
 
-  geefAantalVacatures() : Observable<any>{
-    return this.http.get<number>(`${this.api}/`)
+  geefAantalVacatures(zoekopdracht: String) : Observable<any>{
+    return this.http.get<number>(`${this.api}/` + zoekopdracht);
   }
 }

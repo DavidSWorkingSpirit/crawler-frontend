@@ -21,14 +21,8 @@ export class VacatureTabelComponent implements OnInit {
   constructor(private vacatureService : VacatureService) { }
 
   ngOnInit() {
-    this.haalAantalVacaturesOp();
     this.haalEersteVacaturesOp();
     
-  }
-
-  haalAantalVacaturesOp() : void{
-    this.vacatureService.geefAantalVacatures().subscribe(aantal => {this.length = aantal
-    });
   }
 
   haalEersteVacaturesOp(): void{
@@ -36,8 +30,15 @@ export class VacatureTabelComponent implements OnInit {
     this.sorteerDTO.size = 25;
     this.sorteerDTO.sort = "vacature";
     this.sorteerDTO.sortDir = "desc";
+    this.sorteerDTO.zoekopdracht="java";
+    this.haalAantalVacaturesOp(this.sorteerDTO.zoekopdracht);
     this.haalVacaturesOp(this.sorteerDTO);
 
+  }
+
+  haalAantalVacaturesOp(zoekopdracht:String) : void{
+    this.vacatureService.geefAantalVacatures(zoekopdracht).subscribe(aantal => {this.length = aantal
+    });
   }
 
   haalVacaturesOpPagina(event:PageEvent): void {
