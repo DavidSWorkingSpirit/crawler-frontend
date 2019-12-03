@@ -4,4 +4,5 @@ export class SorteerDTO {
     size:number;
     sortDir: String;
     sort: String;
+    zoekopdracht:String;
 }
