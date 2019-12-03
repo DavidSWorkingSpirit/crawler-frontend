@@ -12,7 +12,7 @@ import { SorteerDTO } from 'src/app/model/sorteer-dto';
 export class VacatureTabelComponent implements OnInit {
   vacatureLijst : VacatureDTO[] = new Array;
   vacature : VacatureDTO = new VacatureDTO;
-  columnsToDisplay = ['titel', 'tekst'];
+  columnsToDisplay = ['titel', 'url', 'datum'];
   event : PageEvent;
   sorteerDTO: SorteerDTO = new SorteerDTO;
   paginator:MatPaginator;
@@ -22,18 +22,16 @@ export class VacatureTabelComponent implements OnInit {
 
   ngOnInit() {
     this.haalEersteVacaturesOp();
-    
   }
 
   haalEersteVacaturesOp(): void{
     this.sorteerDTO.page = 0;
     this.sorteerDTO.size = 25;
-    this.sorteerDTO.sort = "vacature";
-    this.sorteerDTO.sortDir = "desc";
+    this.sorteerDTO.sort = "datum";
+    this.sorteerDTO.sortDir = "DESC";
     this.sorteerDTO.zoekopdracht="java";
     this.haalAantalVacaturesOp(this.sorteerDTO.zoekopdracht);
     this.haalVacaturesOp(this.sorteerDTO);
-
   }
 
   haalAantalVacaturesOp(zoekopdracht:String) : void{
