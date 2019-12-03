@@ -2,14 +2,13 @@
   <div class="item item-1" fxFlex="20%">
     <div class="filtermenu">
 
-      <mat-selection-list #shoes [(ngModel)]="selectedFilters">
-        <mat-list-option [value]="filter" *ngFor="let filter of filterOpties">
-          {{filter}}
-        </mat-list-option>
-      </mat-selection-list>
+      <h3>Vacatures filteren</h3>
+
+      <input id="filterinvoer" placeholder="Filter" [(ngModel)]="selectedFilter">
 
       <div>
-        <button class="button-color" mat-button>Filteren</button>
+        <button id="filterknop" class="button-color" (click)="filterVacatures();" mat-button>Filteren</button>
+        <button id="reset" class="button-color" (click)="resetFilter();" mat-button>Reset</button>
       </div>
     </div>
   </div>
@@ -22,14 +21,17 @@
         <td mat-cell *matCellDef="let vacature"> {{vacature.titel}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="tekst">
-        <th mat-header-cell *matHeaderCellDef> Tekst </th>
-        <td mat-cell *matCellDef="let vacature"> {{vacature.url}} </td>
+      <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef> Link </th>
+        <td mat-cell *matCellDef="let vacature"><a id="link{{vacature.id}}" (click)="openLink(vacature.url);">Ga naar
+            vacature</a></td>
       </ng-container>
 
       <tr class="tableheader" mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
       <tr mat-row *matRowDef="let vacature; columns: columnsToDisplay"></tr>
     </table>
-    <mat-paginator (page)="haalVacaturesOpPagina($event)" class="mat-table" [pageSize]="25" [length]="length"></mat-paginator>
+    <mat-paginator (page)="haalVacaturesOpPagina($event)" class="mat-table" [pageSize]="25" [length]="length"
+      showFirstLastButtons="true">
+    </mat-paginator>
   </div>
 </div>
