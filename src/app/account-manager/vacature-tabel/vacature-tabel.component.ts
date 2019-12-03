@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginatorModule, PageEvent, MatPaginator } from '@angular/material';
 import { VacatureService } from 'src/app/services/vacature.service';
 import { VacatureDTO } from 'src/app/model/vacature-dto';
@@ -10,48 +10,63 @@ import { SorteerDTO } from 'src/app/model/sorteer-dto';
   styleUrls: ['./vacature-tabel.component.scss']
 })
 export class VacatureTabelComponent implements OnInit {
-  vacatureLijst : VacatureDTO[] = new Array;
-  vacature : VacatureDTO = new VacatureDTO;
-  columnsToDisplay = ['titel', 'tekst'];
-  event : PageEvent;
+  vacatureLijst: VacatureDTO[] = new Array;
+  vacature: VacatureDTO = new VacatureDTO;
+  columnsToDisplay = ['titel', 'link'];
+  event: PageEvent;
   sorteerDTO: SorteerDTO = new SorteerDTO;
-  paginator:MatPaginator;
-  length:number;
+  selectedFilter: string = "";
+  paginator: MatPaginator;
+  length: number;
 
   constructor(private vacatureService : VacatureService) { }
 
   ngOnInit() {
     this.haalEersteVacaturesOp();
-    
   }
 
-  haalEersteVacaturesOp(): void{
+  haalEersteVacaturesOp(): void {
     this.sorteerDTO.page = 0;
     this.sorteerDTO.size = 25;
     this.sorteerDTO.sort = "vacature";
     this.sorteerDTO.sortDir = "desc";
-    this.sorteerDTO.zoekopdracht="java";
-    this.haalAantalVacaturesOp(this.sorteerDTO.zoekopdracht);
+    this.sorteerDTO.zoekopdracht = this.selectedFilter;
+    this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
-
   }
 
-  haalAantalVacaturesOp(zoekopdracht:String) : void{
-    this.vacatureService.geefAantalVacatures(zoekopdracht).subscribe(aantal => {this.length = aantal
+  haalAantalVacaturesOp(sorteerDTO: SorteerDTO): void {
+    this.vacatureService.geefAantalVacatures(sorteerDTO).subscribe(aantal => {
+      this.length = aantal;
     });
   }
 
-  haalVacaturesOpPagina(event:PageEvent): void {
+  haalVacaturesOpPagina(event: PageEvent): void {
     this.sorteerDTO.page = event.pageIndex;
     this.sorteerDTO.size = event.pageSize;
     this.sorteerDTO.sortDir = "desc";
     this.sorteerDTO.sort = "vacature";
+    this.sorteerDTO.zoekopdracht = this.selectedFilter;
+    this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
   }
 
-  haalVacaturesOp(sorteerDTO:SorteerDTO):void{
+  haalVacaturesOp(sorteerDTO: SorteerDTO): void {
     this.vacatureService.geefAlleVacatures(sorteerDTO).subscribe(vacatureLijst => {
       this.vacatureLijst = vacatureLijst;
     });
+  }
+
+  filterVacatures(): void {
+    this.haalEersteVacaturesOp();
+  }
+
+  resetFilter(): void {
+    this.selectedFilter = "";
+    this.haalEersteVacaturesOp();
+  }
+
+  openLink(url: string): void {
+    window.open(url, "_blank");
   }
 }

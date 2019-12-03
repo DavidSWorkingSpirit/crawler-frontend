@@ -17,7 +17,7 @@ import { AccountManagerComponent } from './account-manager/account-manager.compo
 import { AdminComponent } from './admin/admin.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { AccountHomeComponent } from './account-manager/account-home/account-home.component';
-import { MatSnackBarModule, MatTableModule, MatSelectModule } from '@angular/material';
+import { MatSnackBarModule, MatTableModule, MatSelectModule, MatListModule } from '@angular/material';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { GebruikersComponent } from './admin/gebruikers/gebruikers.component';
@@ -92,6 +92,7 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
+    MatListModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },
