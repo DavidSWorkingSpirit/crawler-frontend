@@ -22,7 +22,6 @@ export class VacatureService {
   }
 
   geefAantalNieuweVacatures(sorteerDTO:SorteerDTO) : Observable<any>{
-    console.log(sorteerDTO.datum);
     return this.http.post<number>(`${this.api}/datum` , sorteerDTO);
   }
 
