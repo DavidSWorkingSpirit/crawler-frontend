@@ -20,6 +20,7 @@ export class VacatureTabelComponent implements OnInit {
   length: number;
   descending=false;
   direction = "ASC";
+  sorteerOp:String = "datum";
 
   constructor(private vacatureService : VacatureService) { }
 
@@ -27,8 +28,9 @@ export class VacatureTabelComponent implements OnInit {
     this.haalEersteVacaturesOp();
   }
 
-  sorteerDatum(){
+  sorteer(kolomnaam:String){
     this.descending = !this.descending;
+    this.sorteerOp = kolomnaam;
     if(this.descending){
       this.direction = "DESC";
     } else {
@@ -40,7 +42,7 @@ export class VacatureTabelComponent implements OnInit {
   haalEersteVacaturesOp(): void {
     this.sorteerDTO.page = 0;
     this.sorteerDTO.size = 25;
-    this.sorteerDTO.sort = "datum";
+    this.sorteerDTO.sort = this.sorteerOp;
     this.sorteerDTO.sortDir = this.direction;
     this.sorteerDTO.zoekopdracht = this.selectedFilter;
     this.haalAantalVacaturesOp(this.sorteerDTO);
