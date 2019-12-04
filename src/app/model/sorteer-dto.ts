@@ -5,4 +5,5 @@ export class SorteerDTO {
     sortDir: String;
     sort: String;
     zoekopdracht:String;
+    datum:Date;
 }

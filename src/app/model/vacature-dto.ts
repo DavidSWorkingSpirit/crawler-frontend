@@ -4,4 +4,5 @@ export class VacatureDTO {
     titel:string;
     url:string;
     aantalVacatures:number;
+    datum:Date;
 }
