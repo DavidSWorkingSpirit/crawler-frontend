@@ -1,25 +1,31 @@
 mat-toolbar {
-    color: rgb(126, 2, 197);;
-    border: 1.5px solid rgb(126, 2, 197);;
-    border-radius: 10px;
-    padding: 20px;
+    background-color: rgb(126, 2, 197);
+    color: #ffffff;
+    position: fixed;
+    top: 0;
     z-index: 2;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
-.filler{
+mat-icon {
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.filler {
     flex: 1 1 auto;
 }
 
-.uitloggen {
-    color: white;
-    background-color: rgb(126, 2, 197);;
-    border-radius: 10px;
-    border: 1.5px solid rgb(126, 2, 197);; 
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px; 
-    cursor: pointer;
-    font-size: medium;
+.link {
+    padding-left: 5%;
 }
 
+.button {
+    min-width: 75px;
+    background-color: #FFFFFF;
+    color: rgb(126, 2, 197);
+    font-size: 13.3333px;
+    cursor: pointer;
+    text-decoration: none;
+}
