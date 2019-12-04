@@ -24,7 +24,6 @@ export class NieuweVacatureComponent implements OnInit {
   sorteerOp:String = "datum";
   datum = new Date;
 
-
   constructor(private vacatureService : VacatureService) { }
 
   ngOnInit() {
