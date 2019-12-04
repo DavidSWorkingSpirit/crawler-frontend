@@ -10,14 +10,17 @@ import { SorteerDTO } from 'src/app/model/sorteer-dto';
   styleUrls: ['./vacature-tabel.component.scss']
 })
 export class VacatureTabelComponent implements OnInit {
-  vacatureLijst: VacatureDTO[] = new Array;
-  vacature: VacatureDTO = new VacatureDTO;
-  columnsToDisplay = ['titel', 'link'];
-  event: PageEvent;
+  vacatureLijst : VacatureDTO[] = new Array;
+  vacature : VacatureDTO = new VacatureDTO;
+  columnsToDisplay = ['titel', 'datum', 'link'];
+  event : PageEvent;
   sorteerDTO: SorteerDTO = new SorteerDTO;
   selectedFilter: string = "";
   paginator: MatPaginator;
   length: number;
+  descending=false;
+  direction = "ASC";
+  sorteerOp:String = "datum";
 
   constructor(private vacatureService : VacatureService) { }
 
@@ -25,11 +28,22 @@ export class VacatureTabelComponent implements OnInit {
     this.haalEersteVacaturesOp();
   }
 
+  sorteer(kolomnaam:String){
+    this.descending = !this.descending;
+    this.sorteerOp = kolomnaam;
+    if(this.descending){
+      this.direction = "DESC";
+    } else {
+      this.direction = "ASC";
+    }
+    this.haalEersteVacaturesOp();
+  }
+
   haalEersteVacaturesOp(): void {
     this.sorteerDTO.page = 0;
     this.sorteerDTO.size = 25;
-    this.sorteerDTO.sort = "vacature";
-    this.sorteerDTO.sortDir = "desc";
+    this.sorteerDTO.sort = this.sorteerOp;
+    this.sorteerDTO.sortDir = this.direction;
     this.sorteerDTO.zoekopdracht = this.selectedFilter;
     this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
@@ -44,8 +58,8 @@ export class VacatureTabelComponent implements OnInit {
   haalVacaturesOpPagina(event: PageEvent): void {
     this.sorteerDTO.page = event.pageIndex;
     this.sorteerDTO.size = event.pageSize;
-    this.sorteerDTO.sortDir = "desc";
-    this.sorteerDTO.sort = "vacature";
+    this.sorteerDTO.sortDir = "ASC";
+    this.sorteerDTO.sort = "datum";
     this.sorteerDTO.zoekopdracht = this.selectedFilter;
     this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
