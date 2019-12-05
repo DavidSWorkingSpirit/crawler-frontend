@@ -47,6 +47,7 @@ export class NieuweVacatureComponent implements OnInit {
     this.sorteerDTO.size = 25;
     this.sorteerDTO.sort = this.sorteerOp;
     this.sorteerDTO.sortDir = this.direction;
+    this.sorteerDTO.zoekopdracht = this.selectedFilter;
     this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
   }
@@ -62,7 +63,7 @@ export class NieuweVacatureComponent implements OnInit {
     this.sorteerDTO.size = event.pageSize;
     this.sorteerDTO.sortDir = "ASC";
     this.sorteerDTO.sort = "datum";
-    // this.sorteerDTO.zoekopdracht = this.selectedFilter;
+    this.sorteerDTO.zoekopdracht = this.selectedFilter;
     this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
   }
@@ -71,6 +72,15 @@ export class NieuweVacatureComponent implements OnInit {
     this.vacatureService.geefAlleNieuweVacatures(sorteerDTO).subscribe(vacatureLijst => {
       this.vacatureLijst = vacatureLijst;
     });
+  }
+
+  filterVacatures(): void {
+    this.haalNieuwsteVacaturesOp();
+  }
+
+  resetFilter(): void {
+    this.selectedFilter = "";
+    this.haalNieuwsteVacaturesOp();
   }
 
   openLink(url: string): void {
