@@ -25,6 +25,7 @@ export class WebsitesComponent implements OnInit {
     this.websiteService.geefAlleWebsites().subscribe(websiteLijst => {
       this.dataSource.data = websiteLijst;
     });
+    
   }
 
   websiteOpslaan(website: Website): void {
