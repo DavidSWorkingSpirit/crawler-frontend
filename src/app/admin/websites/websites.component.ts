@@ -11,7 +11,7 @@ import { WebsiteDeleteDialogComponent } from 'src/app/dialog/website-delete-dial
 })
 export class WebsitesComponent implements OnInit {
   website: Website = new Website();
-  displayedColumns: string[] = ['naam', 'url', 'filter', 'bewerk', 'verwijder'];
+  displayedColumns: string[] = ['naam', 'url', 'filter', 'elementid', 'bewerk', 'verwijder'];
   dataSource = new MatTableDataSource();
   wijzigen: boolean = false;
 
@@ -25,7 +25,6 @@ export class WebsitesComponent implements OnInit {
     this.websiteService.geefAlleWebsites().subscribe(websiteLijst => {
       this.dataSource.data = websiteLijst;
     });
-    
   }
 
   websiteOpslaan(website: Website): void {

@@ -3,5 +3,5 @@ export class Website {
     naam: string;
     url: string;
     filter: string;
-    vacatureTekstTag : string;
+    vacatureTekstTag: string;
 }

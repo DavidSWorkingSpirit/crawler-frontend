@@ -2,9 +2,13 @@
   <div class="item item-1" fxFlex="21.1%">
     <div class="filtermenu">
 
-      <h3>Vacatures filteren</h3>
+      <p id="filteren">Vacatures filteren</p>
 
-      <input id="filterinvoer" placeholder="Filter" [(ngModel)]="selectedFilter">
+      <mat-selection-list [(ngModel)]="filters">
+        <mat-list-option class="custom-ripple" *ngFor="let filter of filterOpties" [value]="filter">
+          {{filter}}
+        </mat-list-option>
+      </mat-selection-list>
 
       <div>
         <button id="filterknop" class="button-color" (click)="filterVacatures();" mat-button>Filteren</button>
