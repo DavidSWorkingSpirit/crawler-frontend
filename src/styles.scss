@@ -82,3 +82,17 @@ table {
 th.mat-header-cell {
     color: #FFFFFF;
 }
+
+mat-pseudo-checkbox.mat-pseudo-checkbox {
+    color: rgba(126, 2, 197, 0.75) !important;
+}
+
+mat-pseudo-checkbox.mat-pseudo-checkbox.mat-pseudo-checkbox-checked {
+    background-color: rgb(126, 2, 197) !important;
+}
+
+.custom-ripple {
+    .mat-ripple-element {
+        background-color: rgba(126, 2, 197, 0.25) !important;
+    }
+}

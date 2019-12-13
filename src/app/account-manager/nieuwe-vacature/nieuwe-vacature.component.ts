@@ -10,18 +10,18 @@ import { VacatureService } from 'src/app/services/vacature.service';
   styleUrls: ['./nieuwe-vacature.component.scss']
 })
 export class NieuweVacatureComponent implements OnInit {
-
-  vacatureLijst : VacatureDTO[] = new Array;
-  vacature : VacatureDTO = new VacatureDTO;
+  vacatureLijst: VacatureDTO[] = new Array;
+  vacature: VacatureDTO = new VacatureDTO;
   columnsToDisplay = ['titel', 'datum', 'link'];
-  event : PageEvent;
+  event: PageEvent;
   sorteerDTO: SorteerDTO = new SorteerDTO;
-  selectedFilter: string = "";
+  filterOpties: string[] = ['Infra', 'Developer', 'Java', '.NET', 'DevOps', 'Engineer'];
+  filters: string[] = new Array;
   paginator: MatPaginator;
   length: number;
-  descending=false;
-  direction = "ASC";
-  sorteerOp:String = "datum";
+  descending: boolean = false;
+  direction: string = "ASC";
+  sorteerOp: string = "datum";
   datum = new Date;
 
   constructor(private vacatureService : VacatureService) { }
@@ -30,10 +30,10 @@ export class NieuweVacatureComponent implements OnInit {
     this.haalNieuwsteVacaturesOp();
   }
 
-  sorteer(kolomnaam:String){
+  sorteer(kolomnaam: string): void {
     this.descending = !this.descending;
     this.sorteerOp = kolomnaam;
-    if(this.descending){
+    if (this.descending) {
       this.direction = "DESC";
     } else {
       this.direction = "ASC";
@@ -46,12 +46,12 @@ export class NieuweVacatureComponent implements OnInit {
     this.sorteerDTO.size = 25;
     this.sorteerDTO.sort = this.sorteerOp;
     this.sorteerDTO.sortDir = this.direction;
-    this.sorteerDTO.zoekopdracht = this.selectedFilter;
+    this.sorteerDTO.zoekopdrachten = this.filters;
     this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
   }
 
-  haalAantalVacaturesOp(sorteerDTO : SorteerDTO): void {
+  haalAantalVacaturesOp(sorteerDTO: SorteerDTO): void {
     this.vacatureService.geefAantalNieuweVacatures(sorteerDTO).subscribe(aantal => {
       this.length = aantal;
     });
@@ -60,9 +60,9 @@ export class NieuweVacatureComponent implements OnInit {
   haalVacaturesOpPagina(event: PageEvent): void {
     this.sorteerDTO.page = event.pageIndex;
     this.sorteerDTO.size = event.pageSize;
-    this.sorteerDTO.sortDir = "ASC";
-    this.sorteerDTO.sort = "datum";
-    this.sorteerDTO.zoekopdracht = this.selectedFilter;
+    this.sorteerDTO.sortDir = this.direction;
+    this.sorteerDTO.sort = this.sorteerOp;
+    this.sorteerDTO.zoekopdrachten = this.filters;
     this.haalAantalVacaturesOp(this.sorteerDTO);
     this.haalVacaturesOp(this.sorteerDTO);
   }
@@ -78,7 +78,7 @@ export class NieuweVacatureComponent implements OnInit {
   }
 
   resetFilter(): void {
-    this.selectedFilter = "";
+    this.filters = new Array;
     this.haalNieuwsteVacaturesOp();
   }
 

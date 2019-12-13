@@ -26,6 +26,13 @@
                     </td>
                 </ng-container>
 
+                <ng-container matColumnDef="elementid">
+                    <th mat-header-cell *matHeaderCellDef> Element ID </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.vacatureTekstTag}}
+                    </td>
+                </ng-container>
+
                 <ng-container matColumnDef="bewerk">
                     <th mat-header-cell *matHeaderCellDef> Bewerk </th>
                     <td class="align-center" mat-cell *matCellDef="let element">
@@ -90,6 +97,10 @@
 
             <div class="inputdiv">
                 <input id="wijzigfilter" placeholder="Filter" [(ngModel)]="website.filter">
+            </div>
+
+            <div class="inputdiv">
+                <input id="wijzigelementid" placeholder="Element ID" [(ngModel)]="website.vacatureTekstTag">
             </div>
 
             <div class="buttons">

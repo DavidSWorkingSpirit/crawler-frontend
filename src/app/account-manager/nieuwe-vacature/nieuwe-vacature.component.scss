@@ -1,37 +1,29 @@
-h3 {
-    color: rgb(126, 2, 197);
-    margin-block-start: 10px;
+#filteren {
+    color: #FFFFFF;
+    background-color: rgb(126, 2, 197);
+    padding-left: 15px;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
 
-input {
-    width: 90%;
-    border: 1px solid rgb(126, 2, 197);
-    color: rgb(126, 2, 197);
-    padding: 10px;
-    font-size: 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.mat-list-base {
+    padding-top: 0;
 }
 
 .filtermenu {
+    margin-top: 10px;
+    background-color: #FFFFFF;
+
     button {
-        margin-top: 10px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 15px;
         background-color: rgb(126, 2, 197);
         color: #FFFFFF;
         min-width: 100px;
     }
-
-    #reset {
-        margin-left: 10px;
-    }
-}
-
-input::placeholder {
-    color: rgba(126, 2, 197, $alpha: 0.7);
-}
-
-input:focus {
-    outline: none;
 }
 
 table {
