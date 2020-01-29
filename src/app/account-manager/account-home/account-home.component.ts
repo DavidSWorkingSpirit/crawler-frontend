@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Navigation } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-account-home',
@@ -8,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AccountHomeComponent implements OnInit {
   navLinks: any[];
-  activeLinkIndex = -1;
+  activeLinkIndex = 0;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private dataService: DataService) {
     this.navLinks = [
       {
         label: "Nieuwe vacatures",
@@ -19,13 +21,23 @@ export class AccountHomeComponent implements OnInit {
       },
       {
         label: "Bekijk vacatures",
-        link: "./vacaturelijst",
+        link: "./vacatures",
         index: 1
+      },
+      {
+        label: "In behandeling",
+        link: "./actief",
+        index: 2
+      },
+      {
+        label: "Archief",
+        link: "./archief",
+        index: 3
       },
       {
         label: "Zoekopdracht",
         link: "./zoeken",
-        index: 2
+        index: 4
       }
     ];
   }
@@ -34,12 +46,15 @@ export class AccountHomeComponent implements OnInit {
     this.router.events.subscribe((res) => {
       this.activeLinkIndex = this.navLinks.indexOf(this.navLinks.find(tab => tab.link === '.' + this.router.url));
     });
-    this.toonNieuweVacatures();
+
+    this.linkDoor();
   }
 
-  toonNieuweVacatures(): void {
-    this.router.navigateByUrl('accountmanager/nieuw');
+  linkDoor(): void {
+    if (isNullOrUndefined(this.dataService.getSubpage())) {
+      this.router.navigateByUrl("accountmanager/nieuw");
+    } else {
+      this.router.navigateByUrl("accountmanager/" + this.dataService.getSubpage());
+    }
   }
 }
-
-

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { VacatureDTO } from 'src/app/model/vacature-dto';
-import { PageEvent, MatPaginator } from '@angular/material';
+import { PageEvent, MatPaginator, MatDialogConfig, MatDialog, MatSnackBar } from '@angular/material';
 import { SorteerDTO } from 'src/app/model/sorteer-dto';
 import { VacatureService } from 'src/app/services/vacature.service';
+import { VacatureDeleteDialogComponent } from 'src/app/dialog/vacature-delete-dialog/vacature-delete-dialog.component';
+import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nieuwe-vacature',
@@ -12,7 +15,7 @@ import { VacatureService } from 'src/app/services/vacature.service';
 export class NieuweVacatureComponent implements OnInit {
   vacatureLijst: VacatureDTO[] = new Array;
   vacature: VacatureDTO = new VacatureDTO;
-  columnsToDisplay = ['titel', 'datum', 'link'];
+  columnsToDisplay = ['status', 'titel', 'manager', 'datum', 'link', 'delete'];
   event: PageEvent;
   sorteerDTO: SorteerDTO = new SorteerDTO;
   filterOpties: string[] = ['Infra', 'Developer', 'Java', '.NET', 'DevOps', 'Engineer'];
@@ -24,7 +27,8 @@ export class NieuweVacatureComponent implements OnInit {
   sorteerOp: string = "datum";
   datum = new Date;
 
-  constructor(private vacatureService : VacatureService) { }
+  constructor(private vacatureService: VacatureService, private dialog: MatDialog, private snackbar: MatSnackBar,
+              private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
     this.haalNieuwsteVacaturesOp();
@@ -84,5 +88,33 @@ export class NieuweVacatureComponent implements OnInit {
 
   openLink(url: string): void {
     window.open(url, "_blank");
+  }
+
+  naarVacature(id: number): void {
+    this.dataService.setSubpage("nieuw");
+    this.router.navigateByUrl("accountmanager/vacature/" + id);
+  }
+
+  openDialog(vacature: VacatureDTO): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = vacature;
+
+    const dialogRef = this.dialog.open(VacatureDeleteDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(teVerwijderenVacature => {
+      this.vacatureService.verwijderVacature(teVerwijderenVacature.id, teVerwijderenVacature).subscribe(response => {
+        this.openSnackbar("De vacature is verwijderd.", "Sluit", "correctmelding");
+        this.haalNieuwsteVacaturesOp();
+      },
+      (error) => {
+        this.openSnackbar("Het verwijderen van de vacature is mislukt.", "Sluit", "foutmelding");
+      });
+    });
+  }
+
+  openSnackbar(melding: string, actie: string, cssOpmaak: string) {
+    this.snackbar.open(melding, actie, {
+      duration: 5000,
+      panelClass: [cssOpmaak]
+    });
   }
 }

@@ -12,7 +12,7 @@ export class NavBarComponent implements OnInit {
   ingelogd: boolean = false;
 
   constructor(private authenticatieservice:AuthenticatieService, private router:Router,
-    private tokenService:TokenService) { }
+              private tokenService:TokenService) { }
 
   ngOnInit() {
   }
@@ -23,4 +23,11 @@ export class NavBarComponent implements OnInit {
     this.router.navigateByUrl(redirect);
   }
 
+  naarHome(): void {
+    this.router.navigateByUrl(this.authenticatieservice.krijgRol() + "/nieuw");
+  }
+
+  navigeerNaar(url: string): void {
+    this.router.navigateByUrl(this.authenticatieservice.krijgRol() + "/" + url);
+  }
 }

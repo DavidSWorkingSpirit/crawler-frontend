@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatPaginatorModule, MatDialogModule } from '@angular/material';
+import { MatRadioModule, MatSlideToggleModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
@@ -29,7 +30,12 @@ import { WebsiteDeleteDialogComponent } from './dialog/website-delete-dialog/web
 import { GebruikerDeleteDialogComponent } from './dialog/gebruiker-delete-dialog/gebruiker-delete-dialog.component';
 import { ZoektermComponent } from './admin/zoekterm/zoekterm.component';
 import { ZoektermDeleteDialogComponent } from './dialog/zoekterm-delete-dialog/zoekterm-delete-dialog.component';
-import { CustomPaginator } from './config/customPaginatorConfiguration'
+import { CustomPaginator } from './config/customPaginatorConfiguration';
+import { ProfielComponent } from './profiel/profiel.component';
+import { VacatureDeleteDialogComponent } from './dialog/vacature-delete-dialog/vacature-delete-dialog.component';
+import { VacatureComponent } from './account-manager/vacature/vacature.component';
+import { ArchiefComponent } from './account-manager/archief/archief.component';
+import { ActiefComponent } from './account-manager/actief/actief.component'
 
 export function jwtOptionsFactory(tokenService: TokenService) {
   return {
@@ -63,6 +69,11 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     GebruikerDeleteDialogComponent,
     ZoektermComponent,
     ZoektermDeleteDialogComponent,
+    ProfielComponent,
+    VacatureDeleteDialogComponent,
+    VacatureComponent,
+    ArchiefComponent,
+    ActiefComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,13 +103,15 @@ export function jwtOptionsFactory(tokenService: TokenService) {
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    MatRadioModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AutorisatieInterceptor, multi: true },
     { provide: MatPaginatorIntl, useValue: CustomPaginator() },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [WebsiteDeleteDialogComponent, GebruikerDeleteDialogComponent, ZoektermDeleteDialogComponent]
+  entryComponents: [WebsiteDeleteDialogComponent, GebruikerDeleteDialogComponent, ZoektermDeleteDialogComponent, VacatureDeleteDialogComponent]
 })
 export class AppModule { }

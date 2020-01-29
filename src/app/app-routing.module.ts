@@ -13,33 +13,40 @@ import { WebsitesComponent } from './admin/websites/websites.component';
 import { NieuweVacatureComponent } from './account-manager/nieuwe-vacature/nieuwe-vacature.component';
 import { ZoektermComponent } from './admin/zoekterm/zoekterm.component';
 import { VacatureTabelComponent } from './account-manager/vacature-tabel/vacature-tabel.component';
+import { ProfielComponent } from './profiel/profiel.component';
+import { VacatureComponent } from './account-manager/vacature/vacature.component';
+import { ActiefComponent } from './account-manager/actief/actief.component';
+import { ArchiefComponent } from './account-manager/archief/archief.component';
 
 const routes: Routes = [
   { path: 'inloggen', component: InlogComponent },
-  {
-    path: 'admin', component: AdminComponent, canActivate: [AdminAutorisatieGuard],
+
+  { path: 'admin', component: AdminComponent, canActivate: [AdminAutorisatieGuard],
     children: [
-      {
-        path: '', component: AdminHomeComponent, canActivate: [AdminAutorisatieGuard],
+      { path: '', component: AdminHomeComponent, canActivate: [AdminAutorisatieGuard],
         children: [
-          { path: 'gebruikers', component: GebruikersComponent },
-          { path: 'websites', component: WebsitesComponent },
-          { path: 'zoekterm', component: ZoektermComponent }
+          { path: 'gebruikers', component: GebruikersComponent, canActivate: [AdminAutorisatieGuard] },
+          { path: 'websites', component: WebsitesComponent, canActivate: [AdminAutorisatieGuard] },
+          { path: 'zoekterm', component: ZoektermComponent, canActivate: [AdminAutorisatieGuard] }
         ]
       },
+      { path: 'profiel', component: ProfielComponent, canActivate: [AdminAutorisatieGuard] },
     ]
   },
-  {
-    path: 'accountmanager', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
+
+  { path: 'accountmanager', component: AccountManagerComponent, canActivate: [AccountmanagerAutorisatieGuard],
     children: [
-      {
-        path: '', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
+      { path: '', component: AccountHomeComponent, canActivate: [AccountmanagerAutorisatieGuard],
         children: [
-          { path: 'zoeken', component: ZoekschermComponent },
-          { path: 'nieuw', component: NieuweVacatureComponent },
-          { path: 'vacaturelijst', component: VacatureTabelComponent }
+          { path: 'nieuw', component: NieuweVacatureComponent, canActivate: [AccountmanagerAutorisatieGuard] },
+          { path: 'vacatures', component: VacatureTabelComponent, canActivate: [AccountmanagerAutorisatieGuard] },
+          { path: 'actief', component: ActiefComponent, canActivate: [AccountmanagerAutorisatieGuard] },
+          { path: 'archief', component: ArchiefComponent, canActivate: [AccountmanagerAutorisatieGuard] },
+          { path: 'zoeken', component: ZoekschermComponent, canActivate: [AccountmanagerAutorisatieGuard] },
         ]
       },
+      { path: 'vacature/:id', component: VacatureComponent, canActivate: [AccountmanagerAutorisatieGuard] },
+      { path: 'profiel', component: ProfielComponent, canActivate: [AccountmanagerAutorisatieGuard] },
     ]
   },
 

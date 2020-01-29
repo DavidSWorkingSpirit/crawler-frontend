@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { PageEvent, MatPaginator, MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
-import { VacatureService } from 'src/app/services/vacature.service';
 import { VacatureDTO } from 'src/app/model/vacature-dto';
+import { PageEvent, MatPaginator, MatDialog, MatSnackBar, MatDialogConfig } from '@angular/material';
 import { SorteerDTO } from 'src/app/model/sorteer-dto';
-import { VacatureDeleteDialogComponent } from 'src/app/dialog/vacature-delete-dialog/vacature-delete-dialog.component';
+import { VacatureService } from 'src/app/services/vacature.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { VacatureDeleteDialogComponent } from 'src/app/dialog/vacature-delete-dialog/vacature-delete-dialog.component';
 
 @Component({
-  selector: 'app-vacature-tabel',
-  templateUrl: './vacature-tabel.component.html',
-  styleUrls: ['./vacature-tabel.component.scss']
+  selector: 'app-actief',
+  templateUrl: './actief.component.html',
+  styleUrls: ['./actief.component.scss']
 })
-export class VacatureTabelComponent implements OnInit {
+export class ActiefComponent implements OnInit {
   vacatureLijst: VacatureDTO[] = new Array;
   vacature: VacatureDTO = new VacatureDTO;
   columnsToDisplay = ['status', 'titel', 'manager', 'datum', 'link', 'delete'];
@@ -30,7 +30,7 @@ export class VacatureTabelComponent implements OnInit {
               private router: Router, private dataService: DataService) { }
 
   ngOnInit() {
-    this.haalEersteVacaturesOp();
+    this.haalVacaturesInBehandelingOp();
   }
 
   sorteer(kolomnaam: string): void {
@@ -41,10 +41,10 @@ export class VacatureTabelComponent implements OnInit {
     } else {
       this.direction = "ASC";
     }
-    this.haalEersteVacaturesOp();
+    this.haalVacaturesInBehandelingOp();
   }
 
-  haalEersteVacaturesOp(): void {
+  haalVacaturesInBehandelingOp(): void {
     this.sorteerDTO.page = 0;
     this.sorteerDTO.size = 25;
     this.sorteerDTO.sort = this.sorteerOp;
@@ -55,7 +55,7 @@ export class VacatureTabelComponent implements OnInit {
   }
 
   haalAantalVacaturesOp(sorteerDTO: SorteerDTO): void {
-    this.vacatureService.geefAantalVacatures(sorteerDTO).subscribe(aantal => {
+    this.vacatureService.geefAantalVacaturesInBehandeling(sorteerDTO).subscribe(aantal => {
       this.length = aantal;
     });
   }
@@ -71,18 +71,18 @@ export class VacatureTabelComponent implements OnInit {
   }
 
   haalVacaturesOp(sorteerDTO: SorteerDTO): void {
-    this.vacatureService.geefAlleVacatures(sorteerDTO).subscribe(vacatureLijst => {
+    this.vacatureService.geefVacaturesInBehandeling(sorteerDTO).subscribe(vacatureLijst => {
       this.vacatureLijst = vacatureLijst;
     });
   }
 
   filterVacatures(): void {
-    this.haalEersteVacaturesOp();
+    this.haalVacaturesInBehandelingOp();
   }
 
   resetFilter(): void {
     this.filters = new Array;
-    this.haalEersteVacaturesOp();
+    this.haalVacaturesInBehandelingOp();
   }
 
   openLink(url: string): void {
@@ -90,7 +90,7 @@ export class VacatureTabelComponent implements OnInit {
   }
 
   naarVacature(id: number): void {
-    this.dataService.setSubpage("vacatures");
+    this.dataService.setSubpage("actief");
     this.router.navigateByUrl("accountmanager/vacature/" + id);
   }
 
@@ -102,11 +102,11 @@ export class VacatureTabelComponent implements OnInit {
     dialogRef.afterClosed().subscribe(teVerwijderenVacature => {
       this.vacatureService.verwijderVacature(teVerwijderenVacature.id, teVerwijderenVacature).subscribe(response => {
         this.openSnackbar("De vacature is verwijderd.", "Sluit", "correctmelding");
-        this.haalEersteVacaturesOp();
+        this.haalVacaturesInBehandelingOp();
       },
-      (error) => {
-        this.openSnackbar("Het verwijderen van de vacature is mislukt.", "Sluit", "foutmelding");
-      });
+        (error) => {
+          this.openSnackbar("Het verwijderen van de vacature is mislukt.", "Sluit", "foutmelding");
+        });
     });
   }
 

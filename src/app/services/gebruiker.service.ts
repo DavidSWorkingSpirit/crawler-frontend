@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Gebruiker } from '../model/gebruiker';
+import { WachtwoordDTO } from '../model/wachtwoord-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,9 @@ export class GebruikerService {
 
   verwijderGebruiker(id: number): Observable<any> {
     return this.http.delete(`${this.api}/` + id);
+  }
+
+  wijzigWachtwoord(id: number, wachtwoordDTO: WachtwoordDTO): Observable<any> {
+    return this.http.put<WachtwoordDTO>(`${this.api}/` + id + '/wachtwoord', wachtwoordDTO);
   }
 }
