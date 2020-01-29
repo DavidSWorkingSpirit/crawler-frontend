@@ -38,6 +38,29 @@ table {
     a:hover {
         color: rgba(126, 2, 197, $alpha: 0.7);
     }
+
+    .delete {
+        border-radius: 0px;
+        color: rgb(126, 2, 197);
+    }
+
+    .delete:active {
+        transform: scale(0.95);
+    }
+
+    .tablerow:hover {
+        background-color: rgba(126, 2, 197, $alpha: 0.2);
+        cursor: pointer;
+    }
+
+    .status-icon {
+        color: rgb(126, 2, 197);
+        vertical-align: middle;
+
+        .mat-icon {
+            font-size: 22px;
+        }
+    }
 }
 
 .mat-table {
